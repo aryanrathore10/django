@@ -1,0 +1,1 @@
+ path('', include('app1.urls')),
