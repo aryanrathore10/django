@@ -19,8 +19,9 @@ from django.urls import path, include
 from app1 import views
 
 urlpatterns = [
-    path('', views.home, name="home"),
-    path('about/', views.about, name="about"),
-    path('contact/', views.contact, name="contact"),
-    path('chai/', include('chai.urls'))  # Corrected the type here
+    # path('', views.home, name="home"),
+    # path('about/', views.about, name="about"),
+    # path('contact/', views.contact, name="contact"),
+    
+    path('', include('chai.urls'))  # Corrected the type here
 ]
