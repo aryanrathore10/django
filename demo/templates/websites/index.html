@@ -1,38 +1,74 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Page</title>
-    <link rel="stylesheet" type="text/css" href={% static "style.css" %}>
-</head>
-<body>
-    <!-- header section -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">Services</a></li>
 
+{% block start %}
+  <!-- header section -->
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="{% url 'about' %}">About</a>
+        </li>
+        <li>
+          <a href="{% url 'contact' %}">Contact</a>
+        </li>
+        <li>
+          <a href="#">Portfolio</a>
+        </li>
+        <li>
+          <a href="#">Services</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-            </ul>
-        </nav>
-    </header>
+  <!-- main content section -->
+  <main>
+    <h1>Welcome to My Web Page</h1>
+    <p>This is a sample paragraph of text.</p>
 
-    <!-- main content section -->
-    <main>
-        <h1>Welcome to My Web Page</h1>
-        <p>This is a sample paragraph of text.</p>
-        <!-- add more content here -->
-    </main>
+    <table class="container">
+      <thead>
+        <tr>
+          <th>S. No.</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Can Vote</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for person in people %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+            <td>
+              {% if person.age >= 18 %}
+                Yes
+              {% else %}
+                No
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% autoescape on %}
+    {{ text }}
+{% endautoescape %}
+    {{ text|truncatewords:80 }}
+    <br />
+    {% if 'garlic' in veg %}
+      Yes, Available
+    {% else %}
+      Not Available
+    {% endif %}
+    <!-- add more content here -->
+  </main>
 
-    <!-- footer section -->
-    <footer>
-        <p>&copy; 2023 My Web Page</p>
-    </footer>
-</body>
-</html>
+  <!-- footer section -->
+  <footer>
+    <p>&copy; 2023 My Web Page</p>
+  </footer>
+{% endblock %}

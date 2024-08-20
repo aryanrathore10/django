@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'chai',
+    'app1'
+    
 
 ]
 
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'demo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates','static','templates'],
+        'DIRS': ['templates','static',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
